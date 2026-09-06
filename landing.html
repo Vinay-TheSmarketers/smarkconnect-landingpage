@@ -830,6 +830,119 @@
             letter-spacing: 0.05em;
         }
 
+        /* Paradigm Shift & 8-Layer Synthesis Section */
+        .paradigm-banner {
+            background: linear-gradient(135deg, rgba(139, 44, 224, 0.12), rgba(10, 10, 15, 0.6));
+            border: 1px solid rgba(139, 44, 224, 0.3);
+            border-radius: 28px;
+            padding: 56px 48px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paradigm-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .paradigm-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .paradigm-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .paradigm-card:hover {
+            border-color: rgba(139, 44, 224, 0.4);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .paradigm-num {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: #d89af5;
+            margin-bottom: 16px;
+        }
+
+        .paradigm-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: white;
+            letter-spacing: -0.01em;
+        }
+
+        .paradigm-card p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        /* 8-Layer Architecture Grid */
+        .layer-architecture {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .layer-architecture {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .layer-architecture {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .layer-box {
+            background: rgba(10, 10, 15, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.25s ease;
+        }
+
+        .layer-box:hover {
+            border-color: rgba(139, 44, 224, 0.5);
+            background: rgba(139, 44, 224, 0.1);
+        }
+
+        .layer-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #d89af5;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .layer-box h4 {
+            font-size: 15px;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .layer-box p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
         /* Workflow */
         .steps {
             display: grid;
@@ -1030,6 +1143,84 @@
 
         <section class="proof-bar">
             <p>One URL in. Six connected analyses out. A specialist team that keeps working.</p>
+        </section>
+
+        <!-- The Agentic Paradigm Shift & 8-Layer Synthesis Engine -->
+        <section class="paradigm" id="paradigm">
+            <div class="paradigm-banner" data-parallax="0.05">
+                <div class="section-header" style="margin-bottom: 0;">
+                    <span class="kicker">THE AGENTIC PARADIGM SHIFT</span>
+                    <h2>Stop interpreting dashboards.<br><em>Command autonomous direction.</em></h2>
+                    <p>In the Agentic Era, growth leaders no longer stitch together 10+ disjointed trackers. Smark Connect's 8-Layer Synthesis Engine replaces cognitive fatigue with deterministic, evidence-grounded priorities.</p>
+                </div>
+
+                <div class="paradigm-grid">
+                    <div class="paradigm-card">
+                        <div class="paradigm-num">01</div>
+                        <h3>Beyond Telemetry Disintegration</h3>
+                        <p>Legacy stacks force marketers to cross-examine Hotjar heatmaps, Clarity session replays, and SEMrush graphs. We collapse 10+ fragmented analytics tools into a single, zero-integration evidence engine.</p>
+                    </div>
+                    <div class="paradigm-card">
+                        <div class="paradigm-num">02</div>
+                        <h3>8-Layer Information Capture</h3>
+                        <p>Pioneer multi-dimensional crawl technology captures 8 concurrent layers of enterprise intelligence — from site topology baselines and schema entity resolution to competitive whitespace and buyer objection ladders.</p>
+                    </div>
+                    <div class="paradigm-card">
+                        <div class="paradigm-num">03</div>
+                        <h3>Deterministic CMO Synthesis</h3>
+                        <p>Trained on high-dimensional marketing corpus and strategic frameworks. Replaces ambiguous dashboard interpretation with high-confidence, sure-shot recommendations ready for execution.</p>
+                    </div>
+                </div>
+
+                <!-- 8-Layer Capture Architecture -->
+                <div style="margin-top: 56px; text-align: center;">
+                    <span class="kicker" style="color: #d89af5;">8-LAYER CAPTURE ARCHITECTURE</span>
+                    <h3 style="font-size: 22px; color: white; margin-top: 8px;">Multi-Dimensional Intelligence Layering</h3>
+                </div>
+
+                <div class="layer-architecture">
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 01</div>
+                        <h4>Network Baseline</h4>
+                        <p>HTTP response timing, TTFB, & server topology evaluation.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 02</div>
+                        <h4>Entity Graph</h4>
+                        <p>Structured JSON-LD schema extraction & entity clarity mapping.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 03</div>
+                        <h4>Technical Audit</h4>
+                        <p>Self-hosted Lighthouse Core Web Vitals & crawl health audit.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 04</div>
+                        <h4>Offer Stack Ladder</h4>
+                        <p>Brand positioning, value props, & proof element extraction.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 05</div>
+                        <h4>AEO / GEO Citation</h4>
+                        <p>AI answer engine indexation across ChatGPT, Perplexity & Gemini.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 06</div>
+                        <h4>Rival Whitespace</h4>
+                        <p>Competitor positioning comparison & messaging gap matrix.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 07</div>
+                        <h4>Buyer Psychology</h4>
+                        <p>Jobs-To-Be-Done (JTBD) & objection ladder mapping.</p>
+                    </div>
+                    <div class="layer-box">
+                        <div class="layer-badge">LAYER 08</div>
+                        <h4>Live Signal Mining</h4>
+                        <p>Real-time prospect commercial intent discovery across Reddit & X.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="features" id="features">
