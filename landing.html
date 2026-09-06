@@ -11,7 +11,7 @@
         :root {
             --bg-dark: #0a0a0f;
             --text-light: #f8f8f8;
-            --text-muted: #a0a0ab;
+            --text-muted: #cbd5e1;
             --purple-main: #8b2ce0;
             --purple-light: rgba(139, 44, 224, 0.3);
             --card-bg: rgba(255, 255, 255, 0.03);
@@ -107,6 +107,7 @@
         h1, h2, h3 {
             font-weight: 700;
             line-height: 1.1;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
         }
 
         em {
@@ -124,11 +125,13 @@
             color: var(--text-muted);
             margin-bottom: 24px;
             display: inline-block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         p {
             line-height: 1.6;
             color: var(--text-muted);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
         }
 
         /* Floating Megamenu Header & Multicolour Ring Logo */
@@ -371,12 +374,15 @@
             letter-spacing: -0.04em;
             margin-bottom: 32px;
             will-change: transform;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 0, 0, 0.7);
         }
 
         .hero .subtitle {
             font-size: 20px;
             max-width: 650px;
             margin: 0 auto 48px;
+            color: #e2e8f0;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
         }
 
         .hero-ctas {
@@ -658,30 +664,30 @@
         }
 
         .insight-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 32px;
-            backdrop-filter: blur(12px);
+            background: rgba(14, 15, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(16px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             position: relative;
         }
 
         .insight-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(139, 44, 224, 0.4);
-            box-shadow: 0 16px 36px rgba(139, 44, 224, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 44, 224, 0.1);
         }
 
         .insight-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .insight-category {
@@ -689,11 +695,11 @@
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--purple-light);
-            background: rgba(139, 44, 224, 0.15);
-            padding: 4px 12px;
-            border-radius: 999px;
-            border: 1px solid rgba(139, 44, 224, 0.3);
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .insight-metric {
@@ -702,42 +708,45 @@
             color: #34d399;
             background: rgba(52, 211, 153, 0.1);
             padding: 4px 10px;
-            border-radius: 6px;
+            border-radius: 4px;
             border: 1px solid rgba(52, 211, 153, 0.2);
         }
 
         .insight-card h3 {
             font-size: 19px;
+            font-weight: 700;
             line-height: 1.4;
             margin-bottom: 12px;
-            color: white;
+            color: #ffffff;
+            text-shadow: none;
         }
 
         .insight-card p {
             font-size: 14px;
             line-height: 1.6;
-            color: var(--text-muted);
+            color: #94a3b8;
             margin-bottom: 24px;
+            text-shadow: none;
         }
 
         .insight-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 16px;
             margin-top: auto;
             font-size: 13px;
-            color: var(--text-muted);
+            color: #71717a;
         }
 
         .insight-read-more {
-            color: var(--purple-light);
+            color: #cbd5e1;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: gap 0.2s ease;
+            transition: gap 0.2s ease, color 0.2s ease;
         }
 
         .insight-card:hover .insight-read-more {
@@ -880,19 +889,19 @@
         }
 
         .comparison-table th.highlight-col {
-            background: linear-gradient(180deg, rgba(139, 44, 224, 0.25), rgba(139, 44, 224, 0.1));
-            border-left: 1px solid rgba(139, 44, 224, 0.4);
-            border-right: 1px solid rgba(139, 44, 224, 0.4);
-            color: #d89af5;
+            background: rgba(22, 22, 34, 0.85);
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f8f8f8;
             position: relative;
         }
 
         .comparison-table td.highlight-col {
-            background: rgba(139, 44, 224, 0.08);
-            border-left: 1px solid rgba(139, 44, 224, 0.3);
-            border-right: 1px solid rgba(139, 44, 224, 0.3);
+            background: rgba(18, 18, 28, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
             font-weight: 600;
-            color: white;
+            color: #ffffff;
         }
 
         .comparison-table tr:last-child td {
@@ -904,7 +913,7 @@
         }
 
         .comparison-table tr:hover td.highlight-col {
-            background: rgba(139, 44, 224, 0.15);
+            background: rgba(28, 28, 42, 0.85);
         }
 
         .feature-check {
@@ -938,13 +947,13 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #d89af5;
-            background: rgba(139, 44, 224, 0.2);
+            color: #f1f5f9;
+            background: rgba(255, 255, 255, 0.06);
             padding: 4px 12px;
             border-radius: 999px;
-            border: 1px solid rgba(139, 44, 224, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .smark-badge-header {
@@ -955,12 +964,13 @@
         }
 
         .smark-winner-tag {
-            background: var(--purple-main);
-            color: white;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
             font-size: 10px;
             padding: 2px 8px;
-            border-radius: 999px;
-            font-weight: 800;
+            border-radius: 4px;
+            font-weight: 700;
             letter-spacing: 0.05em;
         }
 
@@ -1978,7 +1988,7 @@
 
             function drawWaves() {
                 wCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
-                waveTime += 0.006;
+                waveTime += 0.014;
                 const w = waveCanvas.width;
                 const h = waveCanvas.height;
                 
@@ -1993,7 +2003,7 @@
                     ],
                     width: 220,
                     colors: ['rgba(100,30,220,0)','rgba(130,50,240,0.5)','rgba(90,100,255,0.4)','rgba(30,160,255,0.25)','rgba(0,220,255,0.1)','rgba(0,200,255,0)'],
-                    phase: 0, speed: 1.4,
+                    phase: 0, speed: 1.8,
                     },
                     { // Primary right sweep — bold, fast
                     startX: w * 1.15,
@@ -2005,7 +2015,7 @@
                     ],
                     width: 240,
                     colors: ['rgba(100,30,220,0)','rgba(139,44,224,0.45)','rgba(83,124,255,0.35)','rgba(20,140,250,0.2)','rgba(0,200,255,0.08)','rgba(0,200,255,0)'],
-                    phase: 1.2, speed: 1.1,
+                    phase: 1.2, speed: 1.5,
                     },
                     { // Inner left — secondary, thinner
                     startX: -w * 0.05,
@@ -2016,7 +2026,7 @@
                     ],
                     width: 120,
                     colors: ['rgba(160,60,255,0)','rgba(160,60,255,0.35)','rgba(100,120,255,0.2)','rgba(160,60,255,0)'],
-                    phase: 2.5, speed: 1.8,
+                    phase: 2.5, speed: 2.2,
                     },
                     { // Inner right — secondary, thinner
                     startX: w * 1.05,
@@ -2027,7 +2037,7 @@
                     ],
                     width: 100,
                     colors: ['rgba(120,40,240,0)','rgba(120,40,240,0.3)','rgba(70,110,255,0.18)','rgba(120,40,240,0)'],
-                    phase: 3.8, speed: 2.0,
+                    phase: 3.8, speed: 2.5,
                     },
                     { // Deep center glow — wide, slow
                     startX: w * 0.15,
@@ -2038,15 +2048,15 @@
                     ],
                     width: 300,
                     colors: ['rgba(139,44,224,0)','rgba(139,44,224,0.18)','rgba(100,80,240,0.12)','rgba(139,44,224,0)'],
-                    phase: 5, speed: 0.7,
+                    phase: 5, speed: 1.1,
                     },
                 ];
 
                 waves.forEach(wave => {
                     const t = waveTime * wave.speed + wave.phase;
-                    const wobbleA = Math.sin(t) * 55;
-                    const wobbleB = Math.cos(t * 0.7) * 40;
-                    const wobbleC = Math.sin(t * 1.3) * 25;
+                    const wobbleA = Math.sin(t) * 95;
+                    const wobbleB = Math.cos(t * 0.85) * 68;
+                    const wobbleC = Math.sin(t * 1.4) * 45;
                     
                     wCtx.beginPath();
                     wCtx.moveTo(wave.startX, wave.startY + wobbleA * 0.4);
