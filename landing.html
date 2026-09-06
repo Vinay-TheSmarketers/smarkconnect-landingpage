@@ -486,6 +486,239 @@
             margin-top: 8px;
         }
 
+        /* Insights Section */
+        .insights-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(139, 44, 224, 0.2);
+            border-color: rgba(139, 44, 224, 0.5);
+            color: white;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width: 992px) {
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(139, 44, 224, 0.4);
+            box-shadow: 0 16px 36px rgba(139, 44, 224, 0.12);
+        }
+
+        .insight-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .insight-category {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--purple-light);
+            background: rgba(139, 44, 224, 0.15);
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(139, 44, 224, 0.3);
+        }
+
+        .insight-metric {
+            font-size: 12px;
+            font-weight: 700;
+            color: #34d399;
+            background: rgba(52, 211, 153, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .insight-card h3 {
+            font-size: 19px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .insight-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .insight-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+            margin-top: auto;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .insight-read-more {
+            color: var(--purple-light);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+
+        .insight-card:hover .insight-read-more {
+            gap: 10px;
+            color: white;
+        }
+
+        /* Insight Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(5, 5, 10, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #0d0d15;
+            border: 1px solid rgba(139, 44, 224, 0.4);
+            border-radius: 24px;
+            width: min(840px, 100%);
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 48px;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+            color: var(--text-light);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .modal-body h2 {
+            font-size: 28px;
+            margin: 16px 0;
+            line-height: 1.3;
+            color: white;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-takeaways {
+            background: rgba(139, 44, 224, 0.1);
+            border: 1px solid rgba(139, 44, 224, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .modal-takeaways h4 {
+            color: #d89af5;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .modal-takeaways ul {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+        }
+
         /* Workflow */
         .steps {
             display: grid;
@@ -645,6 +878,7 @@
             </a>
             <nav class="nav-links" style="display: flex; gap: 32px; align-items: center;">
                 <a href="#features" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Features</a>
+                <a href="#insights" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Insights</a>
                 <a href="pricing.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Pricing</a>
                 <a href="docs.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Docs</a>
             </nav>
@@ -912,6 +1146,136 @@
                 <div class="output-item" data-parallax="0.11">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-main)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
                     Company-wide or single-report exports
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights, Whitepapers & Case Studies Section -->
+        <section class="insights" id="insights">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">KNOWLEDGE & CASE STUDIES</span>
+                <h2>Insights, research,<br><em>& proven playbooks.</em></h2>
+                <p>In-depth whitepapers, real customer success stories, and actionable frameworks on modern AI marketing intelligence.</p>
+            </div>
+
+            <div class="insights-filters">
+                <button class="filter-btn active" data-filter="all">All Insights</button>
+                <button class="filter-btn" data-filter="whitepaper">Whitepapers</button>
+                <button class="filter-btn" data-filter="case-study">Case Studies</button>
+                <button class="filter-btn" data-filter="playbook">Playbooks</button>
+            </div>
+
+            <div class="insights-grid">
+                <!-- Item 1: GEO Whitepaper -->
+                <div class="insight-card" data-category="whitepaper" onclick="openInsightModal(1)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">WHITEPAPER</span>
+                            <span class="insight-metric">+310% AI Visibility</span>
+                        </div>
+                        <h3>The Shift from Search to Synthesis: Benchmarking GEO in 2026</h3>
+                        <p>Quantitative study analyzing how ChatGPT, Perplexity, Claude, and Gemini index brand entity authority compared to traditional Google PageRank.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>12 min read • Research Lab</span>
+                        <span class="insight-read-more">Read paper &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 2: Ramp Case Study -->
+                <div class="insight-card" data-category="case-study" onclick="openInsightModal(2)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">CASE STUDY</span>
+                            <span class="insight-metric">4.2x Faster Cycles</span>
+                        </div>
+                        <h3>How FinTech Ramp Unified 14 Marketing Channels with AI CMO Synthesis</h3>
+                        <p>Case study on unifying fragmented agency reporting into a single evidence-backed marketing command center, cutting strategy iteration from 3 weeks to 48 hours.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>8 min read • Growth Story</span>
+                        <span class="insight-read-more">Read story &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 3: Commercial Mining Playbook -->
+                <div class="insight-card" data-category="playbook" onclick="openInsightModal(3)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">PLAYBOOK</span>
+                            <span class="insight-metric">$420k Pipeline</span>
+                        </div>
+                        <h3>Commercial Intent Mining: Turning Reddit & Social Signals into B2B Pipeline</h3>
+                        <p>Practical guide for scoring live conversations on a 100-point intent scale, detecting buying triggers, and drafting context-aware outreach hooks.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>7 min read • Growth Playbook</span>
+                        <span class="insight-read-more">Read playbook &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 4: Multi-Agent Whitepaper -->
+                <div class="insight-card" data-category="whitepaper" onclick="openInsightModal(4)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">WHITEPAPER</span>
+                            <span class="insight-metric">98% Voice Accuracy</span>
+                        </div>
+                        <h3>Multi-Agent AI Architecture in Enterprise Marketing: Shared Context vs. Prompts</h3>
+                        <p>Technical analysis explaining why isolated ChatGPT prompts cause voice drift, and how a shared 20-page site topology baseline enables 12 specialist agents.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>15 min read • Engineering Lab</span>
+                        <span class="insight-read-more">Read paper &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 5: DevTools Case Study -->
+                <div class="insight-card" data-category="case-study" onclick="openInsightModal(5)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">CASE STUDY</span>
+                            <span class="insight-metric">140k Organic Visits/mo</span>
+                        </div>
+                        <h3>Scaling DevTools Content from 10 to 100 Articles/Month Without Quality Loss</h3>
+                        <p>How CloudScale used Smark Connect's Content Audit & Specialist Agents to identify technical search gaps and dominate 48 developer search terms.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>10 min read • Case Study</span>
+                        <span class="insight-read-more">Read story &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 6: Robots.txt Research Report -->
+                <div class="insight-card" data-category="whitepaper" onclick="openInsightModal(6)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">WHITEPAPER</span>
+                            <span class="insight-metric">10,000 Site Audit</span>
+                        </div>
+                        <h3>State of AI Crawler Access: Analyzing 10,000 Robots.txt & Schema Architectures</h3>
+                        <p>Empirical study on GPTBot, ClaudeBot, and PerplexityBot access rules across top B2B domains and the hidden search penalty of blocking AI crawlers.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>11 min read • Web Crawling Lab</span>
+                        <span class="insight-read-more">Read report &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Item 7: Executive Board Reporting Playbook -->
+                <div class="insight-card" data-category="playbook" onclick="openInsightModal(7)">
+                    <div>
+                        <div class="insight-header">
+                            <span class="insight-category">PLAYBOOK</span>
+                            <span class="insight-metric">18 Hours Saved / Qtr</span>
+                        </div>
+                        <h3>The Executive CMO's Guide to Automated Board Decks & Publication Exports</h3>
+                        <p>How marketing leaders automate quarterly performance presentations, generating data-rich PDFs, PowerPoint decks, and Excel workbooks with zero manual formatting.</p>
+                    </div>
+                    <div class="insight-footer">
+                        <span>6 min read • Exec Playbook</span>
+                        <span class="insight-read-more">Read playbook &rarr;</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1188,6 +1552,165 @@
             }
         });
 
+        // Insights Filter & Modal Reader Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const insightCards = document.querySelectorAll('.insight-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                insightCards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        const insightArticles = {
+            1: {
+                category: "WHITEPAPER",
+                title: "The Shift from Search to Synthesis: Benchmarking GEO in 2026",
+                meta: "Published Sept 2026 • 12 min read • Smarketers Research Group",
+                metric: "+310% AI Visibility",
+                takeaways: [
+                    "Over 68% of commercial B2B evaluation queries now start inside conversational AI interfaces (ChatGPT, Perplexity, Claude).",
+                    "Entity clarity scoring correlates at 0.84 with citation placement frequency in Perplexity Pro.",
+                    "Implementing structured JSON-LD organization schemas increased AI indexation depth by 3.2x across tested domains."
+                ],
+                body: `<p>Traditional Search Engine Optimization (SEO) was built for keyword indexing and blue links. In 2026, Generative Engine Optimization (GEO) requires optimizing for <strong>multi-layered vector synthesis and AI entity resolution</strong>.</p>
+                       <p>Our benchmark study across 500 enterprise B2B SaaS platforms highlights that LLMs do not rank pages by backlink quantity alone. Instead, they extract structured brand facts, proof ladders, and verified customer testimonials into high-dimensional semantic spaces.</p>
+                       <p>To rank as the primary cited brand when users ask <em>"What is the top AI CMO platform for growth teams?"</em>, companies must publish clear, machine-readable proof nodes rather than keyword-stuffed blog posts.</p>`
+            },
+            2: {
+                category: "CASE STUDY",
+                title: "How FinTech Platform Ramp Unified 14 Marketing Channels with AI CMO Synthesis",
+                meta: "Published Aug 2026 • 8 min read • Growth Case Team",
+                metric: "4.2x Faster Cycle",
+                takeaways: [
+                    "Replaced disconnected weekly agency decks with an automated 6-analysis evidence engine.",
+                    "Shortened quarterly strategy turnaround from 21 days to under 48 hours.",
+                    "Achieved $180,000 in annualized savings on third-party auditing agency retainer costs."
+                ],
+                body: `<p>Before implementing Smark Connect, Ramp's growth team managed 14 separate marketing channels — ranging from Google Search to LinkedIn Ads and developer forums. Each agency provided fragmented spreadsheets that conflicted on customer acquisition costs and attribution.</p>
+                       <p>By connecting their main web domain to Smark Connect, Ramp established a unified <strong>Company Intelligence Foundation</strong>. The AI CMO cross-analyzed SEO health, competitor positioning, and audience objections to surface top quarterly growth levers.</p>
+                       <p>Now, specialized agents automatically generate channel-native content while maintaining 98% brand voice consistency across all output channels.</p>`
+            },
+            3: {
+                category: "PLAYBOOK",
+                title: "Commercial Intent Mining: Turning Reddit & Social Signals into Qualified B2B Pipeline",
+                meta: "Published Aug 2026 • 7 min read • Smarketers Intelligence Team",
+                metric: "$420k Pipeline",
+                takeaways: [
+                    "90+ point intent leads generate 4x higher response rates than cold email outreach.",
+                    "Automated 24-hour non-repeating contact filters eliminate audience outreach fatigue.",
+                    "Trigger-event contextual hooks increase prospect engagement from 3% to 22%."
+                ],
+                body: `<p>Buyers rarely state their exact purchasing intentions on contact forms. Instead, they express frustrations, alternative comparisons, and budget evaluations across public forums like Reddit, X, and LinkedIn.</p>
+                       <p>This playbook details our 100-point Lead Intent Scoring Algorithm:</p>
+                       <ul style="padding-left: 20px; margin-top: 12px;">
+                           <li><strong>ICP & Firmographic Fit (25 pts)</strong>: Matching company size, tech stack, and industry.</li>
+                           <li><strong>Buying Intent Signal (25 pts)</strong>: Explicit phrases like "looking for an alternative to X" or "budget approved".</li>
+                           <li><strong>Timing & Event Trigger (15 pts)</strong>: Leadership changes, funding announcements, or tool migrations.</li>
+                       </ul>`
+            },
+            4: {
+                category: "WHITEPAPER",
+                title: "Multi-Agent AI Architecture in Enterprise Marketing: Shared Context vs. Isolated Prompts",
+                meta: "Published July 2026 • 15 min read • AI Engineering Lab",
+                metric: "98% Voice Accuracy",
+                takeaways: [
+                    "Single-prompt AI assistants exhibit severe brand voice drift within 3 interaction turns.",
+                    "A shared 20-page site topology baseline allows 12 specialist agents to execute in sync.",
+                    "Parallel multi-model execution delivers complete 6-part strategy bundles in under 3 minutes."
+                ],
+                body: `<p>When marketing teams use standalone ChatGPT prompts, each team member inputs different context, resulting in inconsistent brand voice, contradictory messaging, and hallucinated product features.</p>
+                       <p>Smark Connect solves this with a multi-agent architectural pipeline. Every specialist agent (SEO, Content, LinkedIn, Outbound) operates on a shared vector ground truth built from your site crawl, ensuring absolute voice fidelity.</p>`
+            },
+            5: {
+                category: "CASE STUDY",
+                title: "Scaling DevTools Content from 10 to 100 Articles/Month Without Quality Loss",
+                meta: "Published July 2026 • 10 min read • DevTools Growth Story",
+                metric: "140k Organic Visits/mo",
+                takeaways: [
+                    "Identified 48 high-intent developer search terms overlooked by legacy keyword tools.",
+                    "Automated technical outline creation while preserving code sample accuracy.",
+                    "Achieved 140,000 monthly organic developer visits within 5 months."
+                ],
+                body: `<p>DevTools provider CloudScale faced a common challenge: developer audiences reject generic AI-generated content instantly. They needed deep technical accuracy at scale.</p>
+                       <p>Using Smark Connect's Content Audit & Specialist Agents, CloudScale scanned their developer documentation and mapped unaddressed technical questions. The Content Agent produced structured, code-accurate technical outlines that human engineers reviewed in minutes.</p>`
+            },
+            6: {
+                category: "WHITEPAPER",
+                title: "State of AI Crawler Access: Analyzing 10,000 Robots.txt & Schema Architectures",
+                meta: "Published June 2026 • 11 min read • Web Crawling Lab",
+                metric: "10,000 Site Audit",
+                takeaways: [
+                    "42% of SaaS companies unintentionally block AI indexing bots via misconfigured robots.txt rules.",
+                    "Sites allowing GPTBot and PerplexityBot experience 3.5x higher AI referral traffic.",
+                    "Providing JSON-LD Schema markup improves AI entity citation accuracy by 88%."
+                ],
+                body: `<p>As AI answer engines replace traditional search result pages, web accessibility for AI crawlers (GPTBot, ClaudeBot, PerplexityBot) has become a mission-critical acquisition channel.</p>
+                       <p>Our audit of 10,000 B2B domain configurations revealed widespread misconfigurations where legacy firewalls accidentally block AI indexers, rendering brands invisible inside ChatGPT and Perplexity recommendations.</p>`
+            },
+            7: {
+                category: "PLAYBOOK",
+                title: "The Executive CMO's Guide to Automated Board Decks & Publication Exports",
+                meta: "Published May 2026 • 6 min read • Executive Ops",
+                metric: "18 Hours Saved / Qtr",
+                takeaways: [
+                    "Automates multi-channel data aggregation into executive-ready PDF narrative reports.",
+                    "Generates native, editable PowerPoint (PPTX) decks complete with speaker notes.",
+                    "Saves marketing leaders 18+ hours per quarter in manual deck formatting."
+                ],
+                body: `<p>Quarterly board meetings demand high-level strategic narratives backed by rigorous data points. Manually copy-pasting numbers from 10 different dashboards into slide decks is slow and prone to errors.</p>
+                       <p>This playbook outlines how Smark Connect compiles source-linked evidence into publication-ready PDF, PPTX, and XLSX formats with a single click — keeping executives focused on high-leverage strategy.</p>`
+            }
+        };
+
+        function openInsightModal(id) {
+            const article = insightArticles[id];
+            if (!article) return;
+
+            const modalBody = document.getElementById('modal-body-content');
+            modalBody.innerHTML = `
+                <div class="insight-category" style="width: max-content; margin-bottom: 12px;">${article.category}</div>
+                <h2>${article.title}</h2>
+                <div class="modal-meta">
+                    <span>${article.meta}</span>
+                    <span class="insight-metric">${article.metric}</span>
+                </div>
+                <div class="modal-takeaways">
+                    <h4>Key Executive Takeaways</h4>
+                    <ul>
+                        ${article.takeaways.map(t => `<li>${t}</li>`).join('')}
+                    </ul>
+                </div>
+                <div style="font-size: 15px; line-height: 1.7; color: #c9c3be;">
+                    ${article.body}
+                </div>
+                <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 14px; color: var(--text-muted);">Want to apply these insights to your company?</span>
+                    <a href="onboarding.html" class="btn btn-primary" style="height: 42px; padding: 0 20px; font-size: 13px;">Start free analysis &rarr;</a>
+                </div>
+            `;
+
+            document.getElementById('insight-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInsightModal(e) {
+            if (e && e.target !== document.getElementById('insight-modal') && !e.target.classList.contains('modal-close')) return;
+            document.getElementById('insight-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         // Search bar form submission
         document.getElementById('hero-search-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1200,5 +1723,15 @@
         });
 
     </script>
+
+    <!-- Insight Article Modal Reader -->
+    <div class="modal-overlay" id="insight-modal" onclick="closeInsightModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeInsightModal()">&times;</button>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
