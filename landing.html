@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smark Connect - AI-Powered Marketing Intelligence</title>
+    <style>
+        /* Inter and Instrument Serif */
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --text-light: #f8f8f8;
+            --text-muted: #a0a0ab;
+            --purple-main: #8b2ce0;
+            --purple-light: rgba(139, 44, 224, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Canvases */
+        #dot-canvas, #wave-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        #dot-canvas {
+            z-index: 0;
+        }
+
+        #wave-canvas {
+            z-index: 1;
+            filter: blur(50px);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Ambient Motion */
+        .ambient-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(100px); opacity: 0; }
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(139, 44, 224, 0.15) 0%, rgba(10, 10, 15, 0) 70%);
+            z-index: -1;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--purple-main);
+        }
+
+        .kicker {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        p {
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.6);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-mark {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg at 50% 50%, #8b2ce0 0deg, #537cff 120deg, #00c8ff 240deg, #8b2ce0 360deg);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+            padding: 0 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Layout & Sections */
+        section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            max-width: 700px;
+            margin-inline: auto;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 4.5vw, 60px);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 80px);
+            letter-spacing: -0.04em;
+            margin-bottom: 32px;
+            will-change: transform;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            max-width: 650px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto 48px;
+            position: relative;
+        }
+
+        .search-bar-inner {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 6px 6px 6px 20px;
+            backdrop-filter: blur(12px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar-inner:focus-within {
+            border-color: rgba(139, 44, 224, 0.5);
+            box-shadow: 0 0 30px rgba(139, 44, 224, 0.15), 0 0 60px rgba(139, 44, 224, 0.05);
+        }
+
+        .search-bar-inner svg {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            margin-right: 12px;
+        }
+
+        .search-bar-inner input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: white;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            padding: 14px 0;
+        }
+
+        .search-bar-inner input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-bar-inner button {
+            flex-shrink: 0;
+            height: 48px;
+            padding: 0 24px;
+            border-radius: 12px;
+            border: none;
+            background: white;
+            color: black;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .search-bar-inner button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
+        }
+
+        .search-bar-hint {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            opacity: 0.7;
+        }
+
+        .badges {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .badge svg {
+            color: var(--purple-main);
+        }
+
+        /* Proof Bar */
+        .proof-bar {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(10, 10, 15, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .proof-bar p {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Grids */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px 32px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            will-change: transform;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .card.featured {
+            background: linear-gradient(135deg, rgba(139, 44, 224, 0.15), rgba(10, 10, 15, 0));
+            border-color: rgba(139, 44, 224, 0.3);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--text-light);
+        }
+
+        .featured .card-icon {
+            background: var(--purple-main);
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* Workflow */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            font-family: var(--font-serif);
+            font-size: 48px;
+            color: var(--purple-light);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        /* Agents */
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .agent-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(12px);
+        }
+
+        .agent-chip {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(139, 44, 224, 0.2);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .agent-name {
+            font-weight: 500;
+        }
+
+        /* Outputs */
+        .output-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .output-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .faq-item h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .section-header h2 {
+                font-size: 32px;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            #dot-canvas, #wave-canvas, .ambient-particles {
+                display: none;
+            }
+            .hero h1, .card {
+                transform: none !important;
+                transition: none !important;
+            }
+            .hero-glow {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="dot-canvas"></canvas>
+    <canvas id="wave-canvas"></canvas>
+    
+    <div class="ambient-particles" id="particles">
+        <!-- Injected via JS -->
+    </div>
+
+    <div class="content-wrapper">
+        <header id="header">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                Smark Connect
+            </a>
+            <nav class="nav-links" style="display: flex; gap: 32px; align-items: center;">
+                <a href="#features" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Features</a>
+                <a href="pricing.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Pricing</a>
+                <a href="docs.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Docs</a>
+            </nav>
+            <a href="onboarding.html" class="btn btn-secondary" style="height: 40px; padding: 0 20px; font-size: 14px;">Sign In</a>
+        </header>
+
+        <section class="hero">
+            <div class="hero-glow"></div>
+            <span class="kicker">AI-POWERED MARKETING INTELLIGENCE</span>
+            <h1 data-parallax="0.3">Your marketing<br>has a new<br><em>command center.</em></h1>
+            <p class="subtitle" data-parallax="0.2">One URL. Six evidence-led analyses. An AI CMO that connects every finding to your next best move — and specialist agents that execute it.</p>
+            
+            <div class="search-bar" data-parallax="0.1">
+                <form class="search-bar-inner" id="hero-search-form" autocomplete="off">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="url" id="hero-url-input" placeholder="Enter your website URL" required />
+                    <button type="submit">Start analysis &rarr;</button>
+                </form>
+                <p class="search-bar-hint">Paste your company URL and we'll build your marketing intelligence</p>
+            </div>
+            
+            <div class="badges" data-parallax="0.05">
+                <div class="badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v6h6"/></svg>
+                    Bring your own AI key
+                </div>
+                <div class="badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Evidence-led, not invented
+                </div>
+                <div class="badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Your data stays yours
+                </div>
+            </div>
+        </section>
+
+        <section class="proof-bar">
+            <p>One URL in. Six connected analyses out. A specialist team that keeps working.</p>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">WHAT YOU GET</span>
+                <h2>From scattered signals to<br><em>one clear direction.</em></h2>
+                <p>Most teams don't need another dashboard. They need a system that turns evidence into priorities — and priorities into work.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card" data-parallax="0.05">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </div>
+                    <h3>Company Intelligence</h3>
+                    <p>Deep analysis of your market position, audience, offer stack, and competitive landscape — built from your own public footprint.</p>
+                </div>
+                
+                <div class="card" data-parallax="0.1">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                    </div>
+                    <h3>SEO & AI Visibility</h3>
+                    <p>Technical audit, on-page scoring, and GEO readiness for AI answer engines. Know where you rank and where AI cites you.</p>
+                </div>
+
+                <div class="card" data-parallax="0.15">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Competitor Landscape</h3>
+                    <p>Real competitors identified and benchmarked. Positioning gaps, content advantages, and whitespace opportunities surfaced.</p>
+                </div>
+
+                <div class="card featured" data-parallax="0.05">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3>AI CMO Synthesis</h3>
+                    <p>The connective tissue. Cross-document intelligence that weighs every finding and surfaces the highest-leverage move.</p>
+                </div>
+
+                <div class="card" data-parallax="0.1">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+                    </div>
+                    <h3>Specialist Agents</h3>
+                    <p>SEO, social, content, email, paid media, YouTube, outbound — 12 agents grounded in your company truth, ready on demand.</p>
+                </div>
+
+                <div class="card" data-parallax="0.15">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                    </div>
+                    <h3>Publication-Ready Exports</h3>
+                    <p>Board-ready PDFs, editable PPTX decks, and operational XLSX trackers. Branded, sourced, and presentation-grade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">THREE STEPS</span>
+                <h2>From URL to<br><em>useful direction.</em></h2>
+            </div>
+            
+            <div class="steps">
+                <div class="step" data-parallax="0.05">
+                    <span class="step-number">1</span>
+                    <h3>Connect</h3>
+                    <p>Add your website and an AI provider key. We support OpenAI, Anthropic, Google Gemini, and OpenRouter.</p>
+                </div>
+                <div class="step" data-parallax="0.1">
+                    <span class="step-number">2</span>
+                    <h3>Understand</h3>
+                    <p>Six connected analyses run against your market evidence. Every recommendation traces to a finding. Every finding traces to a source.</p>
+                </div>
+                <div class="step" data-parallax="0.15">
+                    <span class="step-number">3</span>
+                    <h3>Act</h3>
+                    <p>Ask your AI CMO what matters most. Hand approved work to specialist agents who already know your business.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="agents">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">YOUR TEAM</span>
+                <h2>One shared foundation,<br><em>twelve specialist minds.</em></h2>
+                <p>Every agent reads from the same company truth. No context gap, no conflicting advice.</p>
+            </div>
+            
+            <div class="agent-grid">
+                <div class="agent-card" data-parallax="0.05"><div class="agent-chip">SE</div><span class="agent-name">SEO</span></div>
+                <div class="agent-card" data-parallax="0.08"><div class="agent-chip">GE</div><span class="agent-name">GEO</span></div>
+                <div class="agent-card" data-parallax="0.11"><div class="agent-chip">CO</div><span class="agent-name">Content</span></div>
+                <div class="agent-card" data-parallax="0.14"><div class="agent-chip">X</div><span class="agent-name">X (Twitter)</span></div>
+                <div class="agent-card" data-parallax="0.17"><div class="agent-chip">LI</div><span class="agent-name">LinkedIn</span></div>
+                <div class="agent-card" data-parallax="0.06"><div class="agent-chip">RE</div><span class="agent-name">Reddit</span></div>
+                <div class="agent-card" data-parallax="0.09"><div class="agent-chip">IG</div><span class="agent-name">Instagram</span></div>
+                <div class="agent-card" data-parallax="0.12"><div class="agent-chip">EM</div><span class="agent-name">Email</span></div>
+                <div class="agent-card" data-parallax="0.15"><div class="agent-chip">YT</div><span class="agent-name">YouTube</span></div>
+                <div class="agent-card" data-parallax="0.18"><div class="agent-chip">CR</div><span class="agent-name">Creative</span></div>
+                <div class="agent-card" data-parallax="0.07"><div class="agent-chip">CP</div><span class="agent-name">Competitor</span></div>
+                <div class="agent-card" data-parallax="0.10"><div class="agent-chip">OU</div><span class="agent-name">Outbound</span></div>
+            </div>
+        </section>
+
+        <section class="outputs">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">DELIVERABLES</span>
+                <h2>Strategy your team<br>can <em>actually use.</em></h2>
+            </div>
+            
+            <div class="output-list">
+                <div class="output-item" data-parallax="0.05">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-main)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                    Source-linked recommendations
+                </div>
+                <div class="output-item" data-parallax="0.08">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-main)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                    Version history and focused edits
+                </div>
+                <div class="output-item" data-parallax="0.11">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-main)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                    Company-wide or single-report exports
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">BEFORE YOU START</span>
+                <h2>A few useful answers.</h2>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item" data-parallax="0.05">
+                    <h3>What happens when I add my website?</h3>
+                    <p>We crawl up to 20 public pages, capture a network baseline, and run six analyses concurrently — company intelligence, SEO, AI visibility, competitors, audience, and content. The first document lands in under three minutes.</p>
+                </div>
+                <div class="faq-item" data-parallax="0.08">
+                    <h3>Does Smark publish anything automatically?</h3>
+                    <p>No. Agents surface opportunities and prepare work. You keep approval control over everything.</p>
+                </div>
+                <div class="faq-item" data-parallax="0.05">
+                    <h3>Which AI providers are supported?</h3>
+                    <p>OpenAI, Anthropic, Google Gemini, and OpenRouter. You connect your own key during setup and can change providers any time.</p>
+                </div>
+                <div class="faq-item" data-parallax="0.08">
+                    <h3>What export formats are available?</h3>
+                    <p>Every analysis produces a branded PDF, an editable PowerPoint, and — when the data warrants it — an operational Excel workbook with trackers and scores.</p>
+                </div>
+                <div class="faq-item" data-parallax="0.05">
+                    <h3>How far does the token budget go?</h3>
+                    <p>The default workspace budget is 2M tokens. A full company scan uses roughly 180k–300k tokens depending on site size. Plan for 6–8 complete scans, with focused edits using substantially less.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">YOUR NEXT MOVE IS IN THE DATA</span>
+                <h2>Give your marketing<br><em>direction.</em></h2>
+                <p>Connect your website. Build your company intelligence. Let an AI CMO and twelve specialist agents do the rest.</p>
+                <div style="margin-top: 40px;">
+                    <a href="#" class="btn btn-primary">Start with your website &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 Smark Connect. AI-Powered Marketing Intelligence.
+        </footer>
+    </div>
+
+    <script>
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion) {
+            // DOT CANVAS
+            const dotCanvas = document.getElementById('dot-canvas');
+            const dCtx = dotCanvas.getContext('2d');
+            
+            let mouseX = -1000;
+            let mouseY = -1000;
+            
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function resizeDotCanvas() {
+                dotCanvas.width = window.innerWidth;
+                dotCanvas.height = window.innerHeight;
+            }
+
+            window.addEventListener('resize', () => {
+                resizeDotCanvas();
+                resizeWaveCanvas();
+            });
+
+            function drawDots() {
+                dCtx.clearRect(0, 0, dotCanvas.width, dotCanvas.height);
+                
+                const spacing = 30; // 28-32px spacing
+                
+                for (let x = 0; x < dotCanvas.width; x += spacing) {
+                    for (let y = 0; y < dotCanvas.height; y += spacing) {
+                        const dx = x - mouseX;
+                        const dy = y - mouseY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        let radius = 1.2;
+                        let color = 'rgba(255, 255, 255, 0.15)';
+                        
+                        if (dist < 120) {
+                            // Scale based on proximity
+                            const factor = 1 - (dist / 120);
+                            radius = 1.2 + (1.3 * factor); // up to 2.5px
+                            color = `rgba(139, 44, 224, ${0.15 + (0.35 * factor)})`; // transitions to rgba(139, 44, 224, 0.5)
+                        }
+                        
+                        dCtx.beginPath();
+                        dCtx.arc(x, y, radius, 0, Math.PI * 2);
+                        dCtx.fillStyle = color;
+                        dCtx.fill();
+                    }
+                }
+                
+                requestAnimationFrame(drawDots);
+            }
+
+            // WAVE CANVAS
+            const waveCanvas = document.getElementById('wave-canvas');
+            const wCtx = waveCanvas.getContext('2d');
+            let waveTime = 0;
+
+            function resizeWaveCanvas() {
+                waveCanvas.width = window.innerWidth;
+                waveCanvas.height = window.innerHeight;
+            }
+
+            function drawWaves() {
+                wCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+                waveTime += 0.006;
+                const w = waveCanvas.width;
+                const h = waveCanvas.height;
+                
+                const waves = [
+                    { // Primary left sweep — bold, fast
+                    startX: -w * 0.15,
+                    startY: h * 1.15,
+                    points: [
+                        { cpx1: w * 0.02, cpy1: h * 0.85, cpx2: w * 0.12, cpy2: h * 0.42, ex: w * 0.32, ey: h * 0.3 },
+                        { cpx1: w * 0.42, cpy1: h * 0.22, cpx2: w * 0.55, cpy2: h * 0.28, ex: w * 0.72, ey: h * 0.45 },
+                        { cpx1: w * 0.82, cpy1: h * 0.55, cpx2: w * 0.92, cpy2: h * 0.7, ex: w * 1.15, ey: h * 0.8 },
+                    ],
+                    width: 220,
+                    colors: ['rgba(100,30,220,0)','rgba(130,50,240,0.5)','rgba(90,100,255,0.4)','rgba(30,160,255,0.25)','rgba(0,220,255,0.1)','rgba(0,200,255,0)'],
+                    phase: 0, speed: 1.4,
+                    },
+                    { // Primary right sweep — bold, fast
+                    startX: w * 1.15,
+                    startY: h * 1.15,
+                    points: [
+                        { cpx1: w * 0.98, cpy1: h * 0.82, cpx2: w * 0.88, cpy2: h * 0.4, ex: w * 0.68, ey: h * 0.3 },
+                        { cpx1: w * 0.58, cpy1: h * 0.24, cpx2: w * 0.45, cpy2: h * 0.3, ex: w * 0.28, ey: h * 0.48 },
+                        { cpx1: w * 0.18, cpy1: h * 0.58, cpx2: w * 0.08, cpy2: h * 0.72, ex: -w * 0.12, ey: h * 0.85 },
+                    ],
+                    width: 240,
+                    colors: ['rgba(100,30,220,0)','rgba(139,44,224,0.45)','rgba(83,124,255,0.35)','rgba(20,140,250,0.2)','rgba(0,200,255,0.08)','rgba(0,200,255,0)'],
+                    phase: 1.2, speed: 1.1,
+                    },
+                    { // Inner left — secondary, thinner
+                    startX: -w * 0.05,
+                    startY: h * 1.05,
+                    points: [
+                        { cpx1: w * 0.1, cpy1: h * 0.78, cpx2: w * 0.2, cpy2: h * 0.48, ex: w * 0.38, ey: h * 0.38 },
+                        { cpx1: w * 0.48, cpy1: h * 0.32, cpx2: w * 0.58, cpy2: h * 0.36, ex: w * 0.75, ey: h * 0.52 },
+                    ],
+                    width: 120,
+                    colors: ['rgba(160,60,255,0)','rgba(160,60,255,0.35)','rgba(100,120,255,0.2)','rgba(160,60,255,0)'],
+                    phase: 2.5, speed: 1.8,
+                    },
+                    { // Inner right — secondary, thinner
+                    startX: w * 1.05,
+                    startY: h * 1.05,
+                    points: [
+                        { cpx1: w * 0.9, cpy1: h * 0.75, cpx2: w * 0.8, cpy2: h * 0.46, ex: w * 0.62, ey: h * 0.36 },
+                        { cpx1: w * 0.52, cpy1: h * 0.3, cpx2: w * 0.42, cpy2: h * 0.38, ex: w * 0.25, ey: h * 0.55 },
+                    ],
+                    width: 100,
+                    colors: ['rgba(120,40,240,0)','rgba(120,40,240,0.3)','rgba(70,110,255,0.18)','rgba(120,40,240,0)'],
+                    phase: 3.8, speed: 2.0,
+                    },
+                    { // Deep center glow — wide, slow
+                    startX: w * 0.15,
+                    startY: h * 1.3,
+                    points: [
+                        { cpx1: w * 0.25, cpy1: h * 0.65, cpx2: w * 0.38, cpy2: h * 0.35, ex: w * 0.5, ey: h * 0.32 },
+                        { cpx1: w * 0.62, cpy1: h * 0.3, cpx2: w * 0.75, cpy2: h * 0.55, ex: w * 0.85, ey: h * 1.3 },
+                    ],
+                    width: 300,
+                    colors: ['rgba(139,44,224,0)','rgba(139,44,224,0.18)','rgba(100,80,240,0.12)','rgba(139,44,224,0)'],
+                    phase: 5, speed: 0.7,
+                    },
+                ];
+
+                waves.forEach(wave => {
+                    const t = waveTime * wave.speed + wave.phase;
+                    const wobbleA = Math.sin(t) * 55;
+                    const wobbleB = Math.cos(t * 0.7) * 40;
+                    const wobbleC = Math.sin(t * 1.3) * 25;
+                    
+                    wCtx.beginPath();
+                    wCtx.moveTo(wave.startX, wave.startY + wobbleA * 0.4);
+                    
+                    wave.points.forEach((p, i) => {
+                        const oA = Math.sin(t + i * 1.1) * wobbleA;
+                        const oB = Math.cos(t * 0.8 + i * 0.9) * wobbleB;
+                        const oC = Math.sin(t * 1.5 + i * 1.4) * wobbleC;
+                        wCtx.bezierCurveTo(
+                            p.cpx1 + oB + oC * 0.5, p.cpy1 + oA,
+                            p.cpx2 - oA + oC, p.cpy2 + oB * 0.8,
+                            p.ex + oA * 0.4 - oC * 0.3, p.ey - oB * 0.6
+                        );
+                    });
+                    
+                    const gradient = wCtx.createLinearGradient(0, h, w, 0);
+                    wave.colors.forEach((c, i) => gradient.addColorStop(i / (wave.colors.length - 1), c));
+                    
+                    wCtx.strokeStyle = gradient;
+                    wCtx.lineWidth = wave.width;
+                    wCtx.lineCap = 'round';
+                    wCtx.lineJoin = 'round';
+                    wCtx.stroke();
+                });
+                
+                requestAnimationFrame(drawWaves);
+            }
+
+            // Initialize canvases
+            resizeDotCanvas();
+            resizeWaveCanvas();
+            drawDots();
+            drawWaves();
+
+            // Parallax on mouse move for waves
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 3; // 2-3% offset
+                const y = (e.clientY / window.innerHeight - 0.5) * 3;
+                waveCanvas.style.transform = `translate(${x}%, ${y}%)`;
+            });
+
+            // Add particles
+            const particlesContainer = document.getElementById('particles');
+            for(let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 15 + 15}s`;
+                particle.style.animationDelay = `${Math.random() * -20}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Parallax scroll logic
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Header blur effect
+            if (scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (!prefersReducedMotion) {
+                parallaxElements.forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-parallax'));
+                    
+                    // Only apply parallax if element is in or near viewport
+                    const rect = el.getBoundingClientRect();
+                    const elCenter = rect.top + rect.height / 2;
+                    const viewCenter = window.innerHeight / 2;
+                    
+                    if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+                        const offset = (elCenter - viewCenter) * speed;
+                        el.style.transform = `translateY(${offset}px)`;
+                    }
+                });
+            }
+        });
+
+        // Search bar form submission
+        document.getElementById('hero-search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = document.getElementById('hero-url-input').value.trim();
+            if (url) {
+                // Clear any existing onboarding state and pass URL
+                localStorage.removeItem('smark-onboarding');
+                window.location.href = 'onboarding.html?url=' + encodeURIComponent(url);
+            }
+        });
+
+    </script>
+</body>
+</html>
