@@ -884,16 +884,16 @@
             font-size: 14px;
         }
 
-        /* Comparison Matrix Section */
+        /* Minimal & Subtle Comparison Matrix Section */
         .comparison-table-wrapper {
             width: 100%;
             overflow-x: auto;
-            border-radius: 24px;
-            border: 1px solid var(--card-border);
-            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(12, 12, 18, 0.5);
             backdrop-filter: blur(16px);
             margin-top: 48px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
         }
 
         .comparison-table {
@@ -905,32 +905,36 @@
         }
 
         .comparison-table th, .comparison-table td {
-            padding: 18px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 16px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .comparison-table th {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-light);
-            background: rgba(255, 255, 255, 0.03);
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.02);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         .comparison-table th.highlight-col {
-            background: rgba(22, 22, 34, 0.85);
-            border-left: 1px solid rgba(255, 255, 255, 0.12);
-            border-right: 1px solid rgba(255, 255, 255, 0.12);
-            color: #f8f8f8;
+            background: rgba(139, 44, 224, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             position: relative;
         }
 
+        .comparison-table td {
+            color: #cbd5e1;
+        }
+
         .comparison-table td.highlight-col {
-            background: rgba(18, 18, 28, 0.6);
-            border-left: 1px solid rgba(255, 255, 255, 0.08);
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
-            font-weight: 600;
+            background: rgba(139, 44, 224, 0.04);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            font-weight: 500;
             color: #ffffff;
         }
 
@@ -943,7 +947,7 @@
         }
 
         .comparison-table tr:hover td.highlight-col {
-            background: rgba(28, 28, 42, 0.85);
+            background: rgba(139, 44, 224, 0.08);
         }
 
         .feature-check {
@@ -951,7 +955,7 @@
             align-items: center;
             gap: 6px;
             color: #34d399;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 13px;
         }
 
@@ -959,17 +963,13 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-            padding: 3px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            font-size: 12px;
-            font-weight: 600;
+            color: #f87171;
+            font-size: 13px;
+            opacity: 0.85;
         }
 
         .feature-basic {
-            color: var(--text-muted);
+            color: #94a3b8;
             font-size: 13px;
         }
 
@@ -977,13 +977,9 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #f1f5f9;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 4px 12px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 12px;
-            font-weight: 600;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
         }
 
         .smark-badge-header {
@@ -994,13 +990,13 @@
         }
 
         .smark-winner-tag {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: #ffffff;
             font-size: 10px;
             padding: 2px 8px;
             border-radius: 4px;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 0.05em;
         }
 
@@ -1197,16 +1193,208 @@
             font-weight: 500;
         }
 
-        /* FAQ */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
+        /* Hero Motion Graphic & Technical Diagram HUD */
+        .hero-hud-container {
+            width: min(1000px, 100%);
+            margin: 48px auto 0;
+            background: rgba(12, 14, 24, 0.85);
+            backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 44, 224, 0.15);
+            position: relative;
+            text-align: left;
         }
 
-        .faq-item h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
+        .hud-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 11px;
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hud-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .hud-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .hud-dot.red { background: #ff5f56; }
+        .hud-dot.yellow { background: #ffbd2e; }
+        .hud-dot.green { background: #27c93f; }
+
+        .hud-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #34d399;
+        }
+
+        .hud-status-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34d399;
+            box-shadow: 0 0 8px #34d399;
+            animation: pulseFast 1.5s infinite;
+        }
+
+        @keyframes pulseFast {
+            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .hud-diagram-body {
+            position: relative;
+            height: 360px;
+            width: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 44, 224, 0.12) 0%, rgba(10, 10, 15, 0.95) 75%);
+        }
+
+        #tech-diagram-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hud-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .hud-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hud-diagram-body {
+                height: 280px;
+            }
+        }
+
+        .hud-stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hud-stat-icon {
+            color: var(--purple-main);
+            flex-shrink: 0;
+        }
+
+        .hud-stat-info h5 {
+            font-size: 11px;
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .hud-stat-info p {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* FAQ Accordion */
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .faq-accordion-item {
+            background: rgba(15, 15, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .faq-accordion-item.active {
+            border-color: rgba(139, 44, 224, 0.4);
+            background: rgba(20, 20, 32, 0.85);
+        }
+
+        .faq-accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-accordion-header h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .faq-accordion-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            transition: transform 0.3s ease, background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-accordion-item.active .faq-accordion-icon {
+            transform: rotate(45deg);
+            background: rgba(139, 44, 224, 0.3);
+            border-color: rgba(139, 44, 224, 0.5);
+            color: #d89af5;
+        }
+
+        .faq-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+            padding: 0 28px;
+        }
+
+        .faq-accordion-item.active .faq-accordion-content {
+            padding: 0 28px 24px;
+        }
+
+        .faq-accordion-content p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #cbd5e1;
+            margin: 0;
         }
 
         /* Footer */
@@ -1347,10 +1535,56 @@
                     Your data stays yours
                 </div>
             </div>
-        </section>
 
-        <section class="proof-bar">
-            <p>One URL in. Six connected analyses out. A specialist team that keeps working.</p>
+            <!-- Technical Diagram & Complex Motion Graphics HUD -->
+            <div class="hero-hud-container" data-parallax="0.08">
+                <div class="hud-header">
+                    <div class="hud-dots">
+                        <span class="hud-dot red"></span>
+                        <span class="hud-dot yellow"></span>
+                        <span class="hud-dot green"></span>
+                    </div>
+                    <span>SMARK-ENGINE // MULTI-VECTOR INTELLIGENCE PIPELINE</span>
+                    <div class="hud-status">
+                        <span class="hud-status-pulse"></span>
+                        <span>LIVE SYNTHESIS</span>
+                    </div>
+                </div>
+
+                <div class="hud-diagram-body">
+                    <canvas id="tech-diagram-canvas"></canvas>
+                </div>
+
+                <div class="hud-stats-grid">
+                    <div class="hud-stat-card">
+                        <div class="hud-stat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <div class="hud-stat-info">
+                            <h5>CRAWL & VECTOR DEPTH</h5>
+                            <p>8-Layer Information Capture</p>
+                        </div>
+                    </div>
+                    <div class="hud-stat-card">
+                        <div class="hud-stat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        <div class="hud-stat-info">
+                            <h5>AI ENGINE LATENCY</h5>
+                            <p>&lt; 180s Full Scan</p>
+                        </div>
+                    </div>
+                    <div class="hud-stat-card">
+                        <div class="hud-stat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="hud-stat-info">
+                            <h5>EVIDENCE RESOLUTION</h5>
+                            <p>100% Sourced Rationale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- The Agentic Paradigm Shift & 8-Layer Synthesis Engine -->
@@ -1887,26 +2121,55 @@
                 <h2>A few useful answers.</h2>
             </div>
             
-            <div class="faq-grid">
-                <div class="faq-item" data-parallax="0.05">
-                    <h3>What happens when I add my website?</h3>
-                    <p>We crawl up to 20 public pages, capture a network baseline, and run six analyses concurrently — company intelligence, SEO, AI visibility, competitors, audience, and content. The first document lands in under three minutes.</p>
+            <div class="faq-accordion" data-parallax="0.05">
+                <div class="faq-accordion-item">
+                    <div class="faq-accordion-header">
+                        <h3>What happens when I add my website?</h3>
+                        <span class="faq-accordion-icon">+</span>
+                    </div>
+                    <div class="faq-accordion-content">
+                        <p>We crawl up to 20 public pages, capture a network baseline, and run six analyses concurrently — company intelligence, SEO, AI visibility, competitors, audience, and content. The first document lands in under three minutes.</p>
+                    </div>
                 </div>
-                <div class="faq-item" data-parallax="0.08">
-                    <h3>Does Smark publish anything automatically?</h3>
-                    <p>No. Agents surface opportunities and prepare work. You keep approval control over everything.</p>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-accordion-header">
+                        <h3>Does Smark publish anything automatically?</h3>
+                        <span class="faq-accordion-icon">+</span>
+                    </div>
+                    <div class="faq-accordion-content">
+                        <p>No. Agents surface opportunities and prepare work. You keep approval control over everything.</p>
+                    </div>
                 </div>
-                <div class="faq-item" data-parallax="0.05">
-                    <h3>Which AI providers are supported?</h3>
-                    <p>OpenAI, Anthropic, Google Gemini, and OpenRouter. You connect your own key during setup and can change providers any time.</p>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-accordion-header">
+                        <h3>Which AI providers are supported?</h3>
+                        <span class="faq-accordion-icon">+</span>
+                    </div>
+                    <div class="faq-accordion-content">
+                        <p>OpenAI, Anthropic, Google Gemini, and OpenRouter. You connect your own key during setup and can change providers any time.</p>
+                    </div>
                 </div>
-                <div class="faq-item" data-parallax="0.08">
-                    <h3>What export formats are available?</h3>
-                    <p>Every analysis produces a branded PDF, an editable PowerPoint, and — when the data warrants it — an operational Excel workbook with trackers and scores.</p>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-accordion-header">
+                        <h3>What export formats are available?</h3>
+                        <span class="faq-accordion-icon">+</span>
+                    </div>
+                    <div class="faq-accordion-content">
+                        <p>Every analysis produces a branded PDF, an editable PowerPoint, and — when the data warrants it — an operational Excel workbook with trackers and scores.</p>
+                    </div>
                 </div>
-                <div class="faq-item" data-parallax="0.05">
-                    <h3>How far does the token budget go?</h3>
-                    <p>The default workspace budget is 2M tokens. A full company scan uses roughly 180k–300k tokens depending on site size. Plan for 6–8 complete scans, with focused edits using substantially less.</p>
+
+                <div class="faq-accordion-item">
+                    <div class="faq-accordion-header">
+                        <h3>How far does the token budget go?</h3>
+                        <span class="faq-accordion-icon">+</span>
+                    </div>
+                    <div class="faq-accordion-content">
+                        <p>The default workspace budget is 2M tokens. A full company scan uses roughly 180k–300k tokens depending on site size. Plan for 6–8 complete scans, with focused edits using substantially less.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2329,6 +2592,145 @@
                 input.value = url;
                 input.focus();
             }
+        }
+
+        // FAQ Accordion Toggle Logic
+        const faqAccordionItems = document.querySelectorAll('.faq-accordion-item');
+        faqAccordionItems.forEach(item => {
+            const header = item.querySelector('.faq-accordion-header');
+            const content = item.querySelector('.faq-accordion-content');
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqAccordionItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-accordion-content').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // TECHNICAL MOTION GRAPHIC DIAGRAM CANVAS
+        const diagramCanvas = document.getElementById('tech-diagram-canvas');
+        if (diagramCanvas && !prefersReducedMotion) {
+            const ctx = diagramCanvas.getContext('2d');
+            let t = 0;
+
+            function resizeDiagramCanvas() {
+                if (diagramCanvas.parentElement) {
+                    diagramCanvas.width = diagramCanvas.parentElement.clientWidth;
+                    diagramCanvas.height = diagramCanvas.parentElement.clientHeight;
+                }
+            }
+
+            window.addEventListener('resize', resizeDiagramCanvas);
+            resizeDiagramCanvas();
+
+            const nodes = [
+                { label: "SITE CRAWLER", x: 0.16, y: 0.32, type: "input" },
+                { label: "SCHEMA ENTITY", x: 0.36, y: 0.22, type: "process" },
+                { label: "VECTOR MAP", x: 0.64, y: 0.22, type: "process" },
+                { label: "AEO INDEXING", x: 0.84, y: 0.32, type: "output" },
+                { label: "COMPETITOR RADAR", x: 0.24, y: 0.72, type: "input" },
+                { label: "AI CMO SYNTHESIS", x: 0.5, y: 0.48, type: "core" },
+                { label: "AUDIENCE INTENT", x: 0.76, y: 0.72, type: "output" }
+            ];
+
+            const connections = [
+                [0, 1], [1, 2], [2, 3],
+                [0, 5], [1, 5], [2, 5], [4, 5], [5, 6], [5, 3]
+            ];
+
+            const particles = [];
+            for (let i = 0; i < 28; i++) {
+                particles.push({
+                    connIndex: Math.floor(Math.random() * connections.length),
+                    progress: Math.random(),
+                    speed: 0.003 + Math.random() * 0.005
+                });
+            }
+
+            function drawDiagram() {
+                const w = diagramCanvas.width;
+                const h = diagramCanvas.height;
+                if (!w || !h) return;
+                ctx.clearRect(0, 0, w, h);
+                t += 0.02;
+
+                // Draw connecting line vectors
+                connections.forEach(([fromIdx, toIdx]) => {
+                    const from = nodes[fromIdx];
+                    const to = nodes[toIdx];
+                    const fx = from.x * w;
+                    const fy = from.y * h;
+                    const tx = to.x * w;
+                    const ty = to.y * h;
+
+                    const grad = ctx.createLinearGradient(fx, fy, tx, ty);
+                    grad.addColorStop(0, 'rgba(139, 44, 224, 0.25)');
+                    grad.addColorStop(0.5, 'rgba(83, 124, 255, 0.45)');
+                    grad.addColorStop(1, 'rgba(0, 200, 255, 0.25)');
+
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy);
+                    ctx.lineTo(tx, ty);
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                });
+
+                // Draw animated data flow particles
+                particles.forEach(p => {
+                    p.progress += p.speed;
+                    if (p.progress > 1) p.progress = 0;
+
+                    const [fromIdx, toIdx] = connections[p.connIndex];
+                    const from = nodes[fromIdx];
+                    const to = nodes[toIdx];
+                    const px = from.x * w + (to.x * w - from.x * w) * p.progress;
+                    const py = from.y * h + (to.y * h - from.y * h) * p.progress;
+
+                    ctx.beginPath();
+                    ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fill();
+                });
+
+                // Draw nodes
+                nodes.forEach((n, idx) => {
+                    const nx = n.x * w;
+                    const ny = n.y * h;
+                    const pulse = Math.sin(t * 1.5 + idx) * 3;
+
+                    // Node outer ring
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, 14 + pulse, 0, Math.PI * 2);
+                    ctx.strokeStyle = n.type === 'core' ? 'rgba(139, 44, 224, 0.85)' : 'rgba(255, 255, 255, 0.3)';
+                    ctx.lineWidth = n.type === 'core' ? 2 : 1;
+                    ctx.stroke();
+
+                    // Node center fill
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, n.type === 'core' ? 8 : 5, 0, Math.PI * 2);
+                    ctx.fillStyle = n.type === 'core' ? '#8b2ce0' : '#537cff';
+                    ctx.fill();
+
+                    // Node label
+                    ctx.font = '10px monospace';
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(n.label, nx, ny + 28);
+                });
+
+                requestAnimationFrame(drawDiagram);
+            }
+
+            drawDiagram();
         }
     </script>
 
