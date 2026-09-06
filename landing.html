@@ -421,6 +421,71 @@
             margin-bottom: 12px;
         }
 
+        .card-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .featured .card-tag {
+            background: rgba(139, 44, 224, 0.2);
+            border-color: rgba(139, 44, 224, 0.4);
+            color: #d89af5;
+        }
+
+        .card-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .card-feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .card-feature-list li svg {
+            color: var(--purple-main);
+            flex-shrink: 0;
+        }
+
+        .featured .card-feature-list li svg {
+            color: #d89af5;
+        }
+
+        .feature-subheading {
+            margin-top: 80px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .feature-subheading h3 {
+            font-size: 28px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-subheading p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
         /* Workflow */
         .steps {
             display: grid;
@@ -623,58 +688,160 @@
 
         <section class="features" id="features">
             <div class="section-header" data-parallax="0.1">
-                <span class="kicker">WHAT YOU GET</span>
-                <h2>From scattered signals to<br><em>one clear direction.</em></h2>
-                <p>Most teams don't need another dashboard. They need a system that turns evidence into priorities — and priorities into work.</p>
+                <span class="kicker">COMPLETE PLATFORM CAPABILITIES</span>
+                <h2>From raw web evidence to<br><em>autonomous execution.</em></h2>
+                <p>Smark Connect turns scattered marketing signals into clear priorities, strategic direction, and ready-to-publish work.</p>
             </div>
 
+            <!-- Core 6 Reports Grid -->
             <div class="grid">
                 <div class="card" data-parallax="0.05">
+                    <div class="card-tag">STRATEGIC FOUNDATION</div>
                     <div class="card-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>
                     <h3>Company Intelligence</h3>
-                    <p>Deep analysis of your market position, audience, offer stack, and competitive landscape — built from your own public footprint.</p>
+                    <p>Deep extraction of your brand positioning, offer stack, buyer objection ladder, and competitive advantages — derived straight from your website crawl.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Automated 20-page site topology crawl</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Brand voice & tone profiling</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Offer stack & proof ladder mapping</li>
+                    </ul>
                 </div>
                 
                 <div class="card" data-parallax="0.1">
+                    <div class="card-tag">TECHNICAL & GEO</div>
                     <div class="card-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
                     </div>
-                    <h3>SEO & AI Visibility</h3>
-                    <p>Technical audit, on-page scoring, and GEO readiness for AI answer engines. Know where you rank and where AI cites you.</p>
+                    <h3>SEO & GEO Visibility</h3>
+                    <p>Technical health audit combined with Generative Engine Optimization (GEO). Know where you rank on Google and how AI answer engines cite your brand.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Core Web Vitals & 100-point SEO audit</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ChatGPT, Perplexity & Gemini indexing</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Schema markup & entity clarity scoring</li>
+                    </ul>
                 </div>
 
                 <div class="card" data-parallax="0.15">
+                    <div class="card-tag">MARKET BENCHMARKING</div>
                     <div class="card-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
                     <h3>Competitor Landscape</h3>
-                    <p>Real competitors identified and benchmarked. Positioning gaps, content advantages, and whitespace opportunities surfaced.</p>
+                    <p>Uncovers true direct and indirect market rivals. Provides positioning matrix, messaging comparison, SWOT gap analysis, and unexploited whitespace opportunities.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Automatic rival discovery & profiling</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> SWOT & positioning whitespace matrix</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Content gap & keyword overlap radar</li>
+                    </ul>
                 </div>
 
                 <div class="card featured" data-parallax="0.05">
+                    <div class="card-tag">EXECUTIVE BRAIN</div>
                     <div class="card-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                     <h3>AI CMO Synthesis</h3>
-                    <p>The connective tissue. Cross-document intelligence that weighs every finding and surfaces the highest-leverage move.</p>
+                    <p>Cross-document intelligence layer that reads all six core reports, weighs trade-offs, and formulates prioritized 30/60/90 day strategic roadmaps.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Cross-analysis reasoning engine</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Prioritized leverage-matrix recommendations</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Dynamic interactive strategy Q&A</li>
+                    </ul>
                 </div>
 
                 <div class="card" data-parallax="0.1">
+                    <div class="card-tag">TARGETED AUDIENCE</div>
                     <div class="card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
-                    <h3>Specialist Agents</h3>
-                    <p>SEO, social, content, email, paid media, YouTube, outbound — 12 agents grounded in your company truth, ready on demand.</p>
+                    <h3>Audience & ICP Profiling</h3>
+                    <p>Deep ICP persona breakdown, mapping buyer Jobs-To-Be-Done (JTBD), emotional triggers, key hesitation points, and high-converting channels of influence.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Persona Jobs-To-Be-Done mapping</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Buying hesitation & objection handles</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Voice-of-customer tone analysis</li>
+                    </ul>
                 </div>
 
                 <div class="card" data-parallax="0.15">
+                    <div class="card-tag">EDITORIAL ENGINE</div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+                    </div>
+                    <h3>Content Audit & Strategy</h3>
+                    <p>Complete editorial inventory of your existing assets, pillar topic cluster mapping, keyword opportunity radar, and content calendar creation.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full content inventory & score</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pillar & topic cluster architecture</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> High-intent editorial roadmap</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Subheading for Execution & Output Modules -->
+            <div class="feature-subheading" data-parallax="0.1">
+                <h3>Autonomous Execution & Multi-Format Output</h3>
+                <p>Beyond reports: real-time prospect mining, 12 specialized execution agents, and executive export bundles.</p>
+            </div>
+
+            <!-- Secondary Feature Modules Grid (4 cards) -->
+            <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="card" data-parallax="0.05">
+                    <div class="card-tag">REAL-TIME PROSPECTING</div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                    </div>
+                    <h3>Live Conversation Miner</h3>
+                    <p>Scans public discussions across Reddit, X, LinkedIn, and developer forums for high-intent buying signals. Calculates 100-point lead fit scores and drafts personalized outreach hooks.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 100-point ICP & Intent scoring algorithm</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Verbatim quote evidence & trigger event tags</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tailored cold outreach hook generator</li>
+                    </ul>
+                </div>
+
+                <div class="card" data-parallax="0.1">
+                    <div class="card-tag">MULTI-CHANNEL EXECUTION</div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
+                    </div>
+                    <h3>12 Specialist Execution Agents</h3>
+                    <p>Dedicated agents for SEO, GEO, Content, Social (X, LinkedIn, Reddit, Instagram), Email, YouTube, Creative, Competitor, and Outbound — all sharing your exact company context.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Shared truth foundation (zero briefing needed)</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Channel-native content & script generation</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Human-in-the-loop review & approval</li>
+                    </ul>
+                </div>
+
+                <div class="card" data-parallax="0.05">
+                    <div class="card-tag">BOARD-READY DELIVERABLES</div>
                     <div class="card-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
                     </div>
                     <h3>Publication-Ready Exports</h3>
-                    <p>Board-ready PDFs, editable PPTX decks, and operational XLSX trackers. Branded, sourced, and presentation-grade.</p>
+                    <p>Export any individual analysis or complete workspace bundle in three publication formats: executive PDFs, editable PowerPoint decks, and operational Excel workbooks.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Branded PDF reports with custom data charts</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Native PPTX presentations with speaker notes</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> XLSX action trackers with calculated scoring formulas</li>
+                    </ul>
+                </div>
+
+                <div class="card" data-parallax="0.1">
+                    <div class="card-tag">TECHNICAL PERFORMANCE</div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Self-Hosted Lighthouse Engine</h3>
+                    <p>Runs local Chromium-based Lighthouse audits directly inside your workspace. Tracks Core Web Vitals, accessibility compliance, TTFB response speed, and AI bot directives.</p>
+                    <ul class="card-feature-list">
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Core Web Vitals (FCP, LCP, TBT, CLS) audit</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Server TTFB & internal link topology graph</li>
+                        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Robots.txt AI crawler accessibility check</li>
+                    </ul>
                 </div>
             </div>
         </section>
