@@ -719,6 +719,117 @@
             font-size: 14px;
         }
 
+        /* Comparison Matrix Section */
+        .comparison-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 24px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            margin-top: 48px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+            min-width: 900px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .comparison-table th {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-table th.highlight-col {
+            background: linear-gradient(180deg, rgba(139, 44, 224, 0.25), rgba(139, 44, 224, 0.1));
+            border-left: 1px solid rgba(139, 44, 224, 0.4);
+            border-right: 1px solid rgba(139, 44, 224, 0.4);
+            color: #d89af5;
+            position: relative;
+        }
+
+        .comparison-table td.highlight-col {
+            background: rgba(139, 44, 224, 0.08);
+            border-left: 1px solid rgba(139, 44, 224, 0.3);
+            border-right: 1px solid rgba(139, 44, 224, 0.3);
+            font-weight: 600;
+            color: white;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .comparison-table tr:hover td.highlight-col {
+            background: rgba(139, 44, 224, 0.15);
+        }
+
+        .feature-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #34d399;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .feature-dash {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 16px;
+        }
+
+        .feature-basic {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .feature-ai {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #d89af5;
+            background: rgba(139, 44, 224, 0.2);
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(139, 44, 224, 0.4);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .smark-badge-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .smark-winner-tag {
+            background: var(--purple-main);
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
         /* Workflow */
         .steps {
             display: grid;
@@ -879,6 +990,7 @@
             <nav class="nav-links" style="display: flex; gap: 32px; align-items: center;">
                 <a href="#features" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Features</a>
                 <a href="#insights" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Insights</a>
+                <a href="#comparison" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Compare</a>
                 <a href="pricing.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Pricing</a>
                 <a href="docs.html" class="nav-link" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">Docs</a>
             </nav>
@@ -1277,6 +1389,117 @@
                         <span class="insight-read-more">Read playbook &rarr;</span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Comparison Matrix Section -->
+        <section class="comparison" id="comparison">
+            <div class="section-header" data-parallax="0.1">
+                <span class="kicker">WHY SMARK CONNECT</span>
+                <h2>They report data.<br><em>We connect it to pipeline.</em></h2>
+                <p>Legacy SEO platforms log search numbers. CRMs track closed deals. Smark Connect bridges the gap between raw web evidence and revenue growth.</p>
+            </div>
+
+            <div class="comparison-table-wrapper" data-parallax="0.05">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Capability</th>
+                            <th style="width: 15%;">SEMrush</th>
+                            <th style="width: 15%;">Ahrefs</th>
+                            <th style="width: 15%;">HubSpot</th>
+                            <th style="width: 15%;">Growpad</th>
+                            <th class="highlight-col" style="width: 15%;">
+                                <div class="smark-badge-header">
+                                    <span>Smark Connect</span>
+                                    <span class="smark-winner-tag">AI CMO</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Keyword Research & Tracking</strong></td>
+                            <td><span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full</span></td>
+                            <td><span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full</span></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ Full AI + Entity</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competitor Analysis</strong></td>
+                            <td><span class="feature-basic">SERP Only</span></td>
+                            <td><span class="feature-basic">SERP Only</span></td>
+                            <td><span class="feature-basic">Manual</span></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ SWOT & Whitespace</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Content Generation</strong></td>
+                            <td><span class="feature-basic">Add-on</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-basic">Basic AI</span></td>
+                            <td><span class="feature-basic">Basic AI</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ 12 Agents</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>CRM Pipeline Attribution</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full</span></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ Closed-Loop Sync</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keyword &rarr; Revenue Mapping</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-basic">Manual Setup</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ Automated Mapping</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intent Cluster Linkage</strong></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td><span class="feature-basic">Basic</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-basic">Manual</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ Dynamic JTBD Clusters</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Overview / AEO Tracking</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ ChatGPT, Perplexity & Gemini</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavioral Intent (Live Mining)</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ 100-Pt Lead Mining</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evidence-Scored Recommendations</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ 100% Sourced Proof</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pipeline Impact Scoring</strong></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td><span class="feature-dash">—</span></td>
+                            <td class="highlight-col"><span class="feature-ai">✓ AI CMO Prioritization</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
