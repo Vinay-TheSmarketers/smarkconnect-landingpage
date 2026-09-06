@@ -377,7 +377,7 @@
         }
 
         .hero h1 em {
-            color: #ffffff;
+            color: var(--purple-main);
             font-style: italic;
         }
 
@@ -395,127 +395,77 @@
             margin-bottom: 60px;
         }
 
-        /* Hero Command Card (Stitch UI layout) */
+        /* Minimal Sleek Search Bar */
         .search-bar {
-            width: min(720px, 100%);
-            margin: 0 auto 28px;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto 48px;
             position: relative;
         }
 
-        .stitch-hero-card {
-            background: rgba(20, 22, 34, 0.72);
-            backdrop-filter: blur(28px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
-            padding: 24px 28px;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+        .search-bar-inner {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
-            text-align: left;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 6px 6px 6px 20px;
+            backdrop-filter: blur(16px);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .stitch-hero-card:focus-within {
-            border-color: rgba(139, 44, 224, 0.45);
-            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 50px rgba(139, 44, 224, 0.15);
+        .search-bar-inner:focus-within {
+            border-color: rgba(139, 44, 224, 0.5);
+            box-shadow: 0 0 30px rgba(139, 44, 224, 0.2);
         }
 
-        .stitch-card-label {
-            font-size: 17px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.65);
-        }
-
-        .stitch-input-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(10, 10, 16, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 6px 6px 6px 16px;
-        }
-
-        .stitch-input-row svg {
-            color: rgba(255, 255, 255, 0.4);
+        .search-bar-inner svg {
             flex-shrink: 0;
+            color: rgba(255, 255, 255, 0.5);
+            margin-right: 12px;
         }
 
-        .stitch-input-row input {
+        .search-bar-inner input {
             flex: 1;
             background: none;
             border: none;
             outline: none;
-            color: #ffffff;
-            font-size: 15px;
+            color: white;
             font-family: var(--font-sans);
-            padding: 10px 0;
+            font-size: 16px;
+            padding: 14px 0;
         }
 
-        .stitch-input-row input::placeholder {
-            color: rgba(255, 255, 255, 0.35);
+        .search-bar-inner input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        .stitch-input-row button {
-            height: 44px;
-            padding: 0 22px;
-            border-radius: 10px;
+        .search-bar-inner button {
+            flex-shrink: 0;
+            height: 48px;
+            padding: 0 26px;
+            border-radius: 999px;
             border: none;
             background: white;
             color: black;
-            font-size: 14px;
+            font-family: var(--font-sans);
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
-        .stitch-input-row button:hover {
+        .search-bar-inner button:hover {
             transform: translateY(-1px);
             background: #f0f0f0;
         }
 
-        .stitch-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 4px;
-        }
-
-        .stitch-pill-group {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .stitch-mode-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .stitch-mode-pill.active, .stitch-mode-pill:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            color: white;
-        }
-
-        .stitch-chips-bar {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .search-bar-hint {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 12px;
+            text-align: center;
         }
 
         .stitch-chip-btn {
@@ -1375,29 +1325,12 @@
             <p class="subtitle" data-parallax="0.2">Transform raw web data into evidence-led growth priorities. One URL in, six connected analyses out.</p>
             
             <div class="search-bar" data-parallax="0.1">
-                <div class="stitch-hero-card">
-                    <div class="stitch-card-label">What company website shall we analyze?</div>
-                    <form id="hero-search-form" autocomplete="off">
-                        <div class="stitch-input-row">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                            <input type="url" id="hero-url-input" placeholder="https://yourcompany.com" required />
-                            <button type="submit">Start analysis &rarr;</button>
-                        </div>
-                    </form>
-                    <div class="stitch-card-footer">
-                        <div class="stitch-pill-group">
-                            <span class="stitch-mode-pill active">🌐 Web Analysis</span>
-                            <span class="stitch-mode-pill">📊 Competitor Scan</span>
-                            <span class="stitch-mode-pill">⚡ Live Intent Mining</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stitch-chips-bar" data-parallax="0.05">
-                    <button class="stitch-chip-btn" onclick="fillHeroUrl('https://smarketers.com')">✨ Try smarketers.com</button>
-                    <button class="stitch-chip-btn" onclick="fillHeroUrl('https://stripe.com')">✨ Benchmark Stripe.com</button>
-                    <button class="stitch-chip-btn" onclick="fillHeroUrl('https://ramp.com')">✨ Audit Ramp.com</button>
-                </div>
+                <form class="search-bar-inner" id="hero-search-form" autocomplete="off">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="url" id="hero-url-input" placeholder="Enter your website URL" required />
+                    <button type="submit">Start analysis &rarr;</button>
+                </form>
+                <p class="search-bar-hint">Paste your company URL and we'll build your marketing intelligence</p>
             </div>
             
             <div class="badges" data-parallax="0.05">
