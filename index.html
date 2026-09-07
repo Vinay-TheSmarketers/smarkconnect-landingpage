@@ -37,23 +37,29 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Canvases */
-        #dot-canvas, #wave-canvas {
+        /* Canvases & Neon Motion Layering */
+        #dot-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-        }
-
-        #dot-canvas {
             z-index: 0;
+            opacity: 0.85;
         }
 
         #wave-canvas {
-            z-index: 0;
-            filter: blur(50px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(34px);
+            mix-blend-mode: screen;
+            opacity: 0.92;
             transition: transform 0.1s ease-out;
         }
 
@@ -65,18 +71,18 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
+            transition: transform 0.15s ease-out;
         }
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle, #ffffff 0%, #e9d5ff 35%, #c084fc 70%, rgba(168, 85, 247, 0.8) 100%);
+            background: radial-gradient(circle, #ffffff 0%, #f3e8ff 35%, #c084fc 70%, rgba(168, 85, 247, 0.95) 100%);
             border-radius: 50%;
-            box-shadow: 0 0 14px #c084fc, 0 0 28px #a855f7, 0 0 45px rgba(139, 44, 224, 0.9);
+            box-shadow: 0 0 16px #c084fc, 0 0 32px #a855f7, 0 0 50px rgba(168, 85, 247, 0.9);
             pointer-events: none;
             will-change: transform, opacity;
             animation: floatParticle 16s infinite linear;
-            transition: transform 0.25s cubic-bezier(0.1, 0.8, 0.3, 1);
         }
 
         @keyframes floatParticle {
@@ -3482,7 +3488,7 @@
                 const h = waveCanvas.height;
                 
                 const waves = [
-                    { // Primary left sweep — bold, fast
+                    { // Primary left sweep — bold neon gradient
                     startX: -w * 0.15,
                     startY: h * 1.15,
                     points: [
@@ -3490,11 +3496,11 @@
                         { cpx1: w * 0.42, cpy1: h * 0.22, cpx2: w * 0.55, cpy2: h * 0.28, ex: w * 0.72, ey: h * 0.45 },
                         { cpx1: w * 0.82, cpy1: h * 0.55, cpx2: w * 0.92, cpy2: h * 0.7, ex: w * 1.15, ey: h * 0.8 },
                     ],
-                    width: 220,
-                    colors: ['rgba(100,30,220,0)','rgba(130,50,240,0.5)','rgba(90,100,255,0.4)','rgba(30,160,255,0.25)','rgba(0,220,255,0.1)','rgba(0,200,255,0)'],
+                    width: 260,
+                    colors: ['rgba(139,44,224,0)','rgba(168,85,247,0.85)','rgba(99,102,241,0.75)','rgba(56,189,248,0.6)','rgba(0,240,255,0.3)','rgba(0,240,255,0)'],
                     phase: 0, speed: 1.8,
                     },
-                    { // Primary right sweep — bold, fast
+                    { // Primary right sweep — bold cyan & violet
                     startX: w * 1.15,
                     startY: h * 1.15,
                     points: [
@@ -3502,41 +3508,41 @@
                         { cpx1: w * 0.58, cpy1: h * 0.24, cpx2: w * 0.45, cpy2: h * 0.3, ex: w * 0.28, ey: h * 0.48 },
                         { cpx1: w * 0.18, cpy1: h * 0.58, cpx2: w * 0.08, cpy2: h * 0.72, ex: -w * 0.12, ey: h * 0.85 },
                     ],
-                    width: 240,
-                    colors: ['rgba(100,30,220,0)','rgba(139,44,224,0.45)','rgba(83,124,255,0.35)','rgba(20,140,250,0.2)','rgba(0,200,255,0.08)','rgba(0,200,255,0)'],
+                    width: 280,
+                    colors: ['rgba(139,44,224,0)','rgba(192,132,252,0.85)','rgba(129,140,248,0.7)','rgba(59,130,246,0.5)','rgba(0,240,255,0.2)','rgba(0,240,255,0)'],
                     phase: 1.2, speed: 1.5,
                     },
-                    { // Inner left — secondary, thinner
+                    { // Inner left — secondary neon wave
                     startX: -w * 0.05,
                     startY: h * 1.05,
                     points: [
                         { cpx1: w * 0.1, cpy1: h * 0.78, cpx2: w * 0.2, cpy2: h * 0.48, ex: w * 0.38, ey: h * 0.38 },
                         { cpx1: w * 0.48, cpy1: h * 0.32, cpx2: w * 0.58, cpy2: h * 0.36, ex: w * 0.75, ey: h * 0.52 },
                     ],
-                    width: 120,
-                    colors: ['rgba(160,60,255,0)','rgba(160,60,255,0.35)','rgba(100,120,255,0.2)','rgba(160,60,255,0)'],
+                    width: 140,
+                    colors: ['rgba(192,132,252,0)','rgba(192,132,252,0.75)','rgba(129,140,248,0.5)','rgba(192,132,252,0)'],
                     phase: 2.5, speed: 2.2,
                     },
-                    { // Inner right — secondary, thinner
+                    { // Inner right — secondary neon ribbon
                     startX: w * 1.05,
                     startY: h * 1.05,
                     points: [
                         { cpx1: w * 0.9, cpy1: h * 0.75, cpx2: w * 0.8, cpy2: h * 0.46, ex: w * 0.62, ey: h * 0.36 },
                         { cpx1: w * 0.52, cpy1: h * 0.3, cpx2: w * 0.42, cpy2: h * 0.38, ex: w * 0.25, ey: h * 0.55 },
                     ],
-                    width: 100,
-                    colors: ['rgba(120,40,240,0)','rgba(120,40,240,0.3)','rgba(70,110,255,0.18)','rgba(120,40,240,0)'],
+                    width: 130,
+                    colors: ['rgba(168,85,247,0)','rgba(168,85,247,0.7)','rgba(99,102,241,0.45)','rgba(168,85,247,0)'],
                     phase: 3.8, speed: 2.5,
                     },
-                    { // Deep center glow — wide, slow
+                    { // Deep center glow — wide ambient fill
                     startX: w * 0.15,
                     startY: h * 1.3,
                     points: [
                         { cpx1: w * 0.25, cpy1: h * 0.65, cpx2: w * 0.38, cpy2: h * 0.35, ex: w * 0.5, ey: h * 0.32 },
                         { cpx1: w * 0.62, cpy1: h * 0.3, cpx2: w * 0.75, cpy2: h * 0.55, ex: w * 0.85, ey: h * 1.3 },
                     ],
-                    width: 300,
-                    colors: ['rgba(139,44,224,0)','rgba(139,44,224,0.18)','rgba(100,80,240,0.12)','rgba(139,44,224,0)'],
+                    width: 340,
+                    colors: ['rgba(139,44,224,0)','rgba(139,44,224,0.45)','rgba(129,140,248,0.3)','rgba(139,44,224,0)'],
                     phase: 5, speed: 1.1,
                     },
                 ];
@@ -3580,39 +3586,32 @@
             drawDots();
             drawWaves();
 
-            // Parallax on mouse move for waves
+            // Interactive mouse responsiveness for both wave canvas and particles container
+            const particlesContainer = document.getElementById('particles');
+
             window.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 3; // 2-3% offset
-                const y = (e.clientY / window.innerHeight - 0.5) * 3;
-                waveCanvas.style.transform = `translate(${x}%, ${y}%)`;
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                waveCanvas.style.transform = `translate(${x}px, ${y}px)`;
+                if (particlesContainer) {
+                    particlesContainer.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
+                }
             });
 
             // Add vibrant, ultra-visible ambient particles
-            const particlesContainer = document.getElementById('particles');
-            const particleElems = [];
-
-            for(let i = 0; i < 36; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 7 + 4; // 4px to 11px glowing nodes
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDuration = `${Math.random() * 12 + 9}s`;
-                particle.style.animationDelay = `${Math.random() * -20}s`;
-                particlesContainer.appendChild(particle);
-                particleElems.push({ el: particle, speed: (i % 7 + 1) * 0.75 });
+            if (particlesContainer) {
+                for(let i = 0; i < 32; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 8 + 4; // 4px to 12px glowing nodes
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.animationDuration = `${Math.random() * 14 + 10}s`;
+                    particle.style.animationDelay = `${Math.random() * -20}s`;
+                    particlesContainer.appendChild(particle);
+                }
             }
-
-            // Magnetic particle parallax responsiveness
-            window.addEventListener('mousemove', (e) => {
-                const px = (e.clientX / window.innerWidth - 0.5) * 60;
-                const py = (e.clientY / window.innerHeight - 0.5) * 60;
-                
-                particleElems.forEach(item => {
-                    item.el.style.transform = `translate(${px * item.speed}px, ${py * item.speed}px)`;
-                });
-            });
         }
 
         // Parallax scroll logic
