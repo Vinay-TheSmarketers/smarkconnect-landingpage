@@ -576,8 +576,7 @@
         }
 
         .card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.18);
         }
 
         .card.featured {
@@ -746,10 +745,9 @@
         }
 
         .insight-card:hover {
-            transform: translateY(-5px);
             border-color: rgba(139, 44, 224, 0.35);
             background: rgba(18, 19, 32, 0.85);
-            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(139, 44, 224, 0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 44, 224, 0.08);
         }
 
         .insight-card:hover::before {
@@ -1179,7 +1177,6 @@
 
         .paradigm-card:hover {
             border-color: rgba(139, 44, 224, 0.4);
-            transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.05);
         }
 
@@ -1480,17 +1477,7 @@
         }
 
         .bp-stage-1.active .tool-window {
-            animation: jitterFloat 6s ease-in-out infinite alternate;
-        }
-
-        .tool-window:nth-child(2) { animation-delay: 0.4s; }
-        .tool-window:nth-child(3) { animation-delay: 0.8s; }
-        .tool-window:nth-child(4) { animation-delay: 1.2s; }
-
-        @keyframes jitterFloat {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(0.8deg); }
-            100% { transform: translateY(2px) rotate(-0.5deg); }
+            /* Kept stationary for clean, calm interface */
         }
 
         .tool-win-header {
@@ -1593,12 +1580,6 @@
             padding: 1px 5px;
             border-radius: 999px;
             box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
-            animation: bounceSoft 1s infinite alternate;
-        }
-
-        @keyframes bounceSoft {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-3px); }
         }
 
         .confused-marketer-card p {
@@ -2380,10 +2361,13 @@
                 </div>
                 <a href="#insights" class="nav-link">Insights</a>
                 <a href="#comparison" class="nav-link">Compare</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
-                <a href="docs.html" class="nav-link">Docs</a>
+                <a href="/pricing" class="nav-link">Pricing</a>
+                <a href="/docs" class="nav-link">Docs</a>
             </nav>
-            <a href="onboarding.html" class="btn btn-secondary" style="height: 40px; padding: 0 20px; font-size: 14px;">Sign In</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <a href="/login" class="btn btn-secondary" style="height: 38px; padding: 0 18px; font-size: 13px; border-radius: 12px;">Sign In</a>
+                <a href="/onboarding" class="btn btn-primary" style="height: 38px; padding: 0 18px; font-size: 13px; border-radius: 12px; background: #9333ea; color: white; border: 1px solid #a855f7;">Get Started</a>
+            </div>
         </header>
 
         <section class="hero">
@@ -2400,7 +2384,7 @@
             <div class="search-bar" data-parallax="0.1">
                 <form class="search-bar-inner" id="hero-search-form" autocomplete="off">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input type="url" id="hero-url-input" placeholder="Enter your website URL" required />
+                    <input type="text" id="hero-url-input" placeholder="Enter your company website (e.g. stripe.com)" required />
                     <button type="submit">Start analysis &rarr;</button>
                 </form>
                 <p class="search-bar-hint">Paste your company URL and we'll build your marketing intelligence</p>
@@ -3692,21 +3676,7 @@
                 header.classList.remove('scrolled');
             }
 
-            if (!prefersReducedMotion) {
-                parallaxElements.forEach(el => {
-                    const speed = parseFloat(el.getAttribute('data-parallax'));
-                    
-                    // Only apply parallax if element is in or near viewport
-                    const rect = el.getBoundingClientRect();
-                    const elCenter = rect.top + rect.height / 2;
-                    const viewCenter = window.innerHeight / 2;
-                    
-                    if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
-                        const offset = (elCenter - viewCenter) * speed;
-                        el.style.transform = `translateY(${offset}px)`;
-                    }
-                });
-            }
+            // Content kept stationary and calm for clean reading experience
         });
 
         // Insights Filter & Modal Reader Logic
@@ -3884,11 +3854,14 @@
         // Search bar form submission
         document.getElementById('hero-search-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const url = document.getElementById('hero-url-input').value.trim();
+            let url = document.getElementById('hero-url-input').value.trim();
             if (url) {
+                if (!/^https?:\/\//i.test(url)) {
+                    url = 'https://' + url;
+                }
                 // Clear any existing onboarding state and pass URL
                 localStorage.removeItem('smark-onboarding');
-                window.location.href = 'onboarding.html?url=' + encodeURIComponent(url);
+                window.location.href = '/onboarding?url=' + encodeURIComponent(url);
             }
         });
 

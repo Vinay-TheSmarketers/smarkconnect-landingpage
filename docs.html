@@ -226,8 +226,13 @@
             transition: color 0.2s;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: var(--text-light);
+        }
+
+        .nav-links a.active {
+            color: #c084fc;
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
@@ -443,16 +448,20 @@
 
     <div class="content-wrapper">
         <header id="header">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <div class="logo-mark"></div>
                 Smark Connect
             </a>
             <div class="nav-links">
-                <a href="index.html#features">Features</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="docs.html" class="active">Docs</a>
+                <a href="/#features">Features</a>
+                <a href="/#insights">Insights</a>
+                <a href="/#comparison">Compare</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/docs" class="active">Docs</a>
             </div>
-            <a href="onboarding.html" class="btn btn-secondary" style="height: 40px; padding: 0 20px; font-size: 14px;">Sign In</a>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <a href="/login" class="btn btn-secondary" style="height: 38px; padding: 0 18px; font-size: 13px; border-radius: 12px;">Sign In</a>
+                <a href="/onboarding" class="btn btn-primary" style="height: 38px; padding: 0 18px; font-size: 13px; border-radius: 12px; background: #9333ea; color: white; border: 1px solid #a855f7;">Get Started</a>
             </div>
         </header>
 

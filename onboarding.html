@@ -60,55 +60,151 @@
     .onboarding-wrapper {
       position: relative;
       z-index: 10;
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 104px 24px 60px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Header */
+    /* Fixed Sticky Main Menu Header */
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      padding: 0 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 15, 0.85);
+      border-bottom: 1px solid var(--glass-border);
     }
 
-    .logo-container {
+    .logo {
       display: flex;
       align-items: center;
       gap: 12px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 17px;
       letter-spacing: -0.02em;
+      text-decoration: none;
+      color: white;
     }
 
-    .logo-ring {
-      width: 24px;
-      height: 24px;
+    .logo-mark {
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: conic-gradient(from 180deg, #FF3B30, #FF9500, #FFCC00, #4CD964, #5AC8FA, #007AFF, #5856D6, #FF2D55, #FF3B30);
-      padding: 3px;
-    }
-    
-    .logo-ring-inner {
-      width: 100%;
-      height: 100%;
-      background-color: var(--bg-color);
-      border-radius: 50%;
+      background: conic-gradient(from 180deg at 50% 50%, #8b2ce0 0deg, #537cff 120deg, #00c8ff 240deg, #8b2ce0 360deg);
+      box-shadow: 0 0 16px rgba(139, 44, 224, 0.4);
     }
 
-    .skip-link {
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 14px;
+      font-weight: 500;
       transition: color 0.2s;
     }
 
-    .skip-link:hover {
+    .nav-link:hover {
       color: var(--text-main);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-head {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-head.btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+    }
+
+    .btn-head.btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-head.btn-exit {
+      background: rgba(139, 44, 224, 0.1);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      color: #c084fc;
+    }
+
+    .btn-head.btn-exit:hover {
+      background: rgba(139, 44, 224, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      header {
+        padding: 0 16px;
+      }
+    }
+
+    /* Sonar Radar Live Pill */
+    .sonar-radar-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: rgba(139, 44, 224, 0.15);
+      border: 1px solid rgba(192, 132, 252, 0.35);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #f3e8ff;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 20px rgba(139, 44, 224, 0.25);
+    }
+
+    .sonar-pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c084fc;
+      box-shadow: 0 0 8px #c084fc;
+      animation: pulseDot 1.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .target-banner-card {
+      border-color: rgba(139, 44, 224, 0.4) !important;
+      background: linear-gradient(135deg, rgba(139, 44, 224, 0.12), rgba(255, 255, 255, 0.02)) !important;
+      box-shadow: 0 0 30px rgba(139, 44, 224, 0.15) !important;
     }
 
     /* Progress */
@@ -248,7 +344,7 @@
 
     .card:hover {
       background: var(--glass-hover);
-      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     .card.selected {
@@ -428,14 +524,51 @@
   <canvas id="dot-canvas"></canvas>
   <canvas id="wave-canvas"></canvas>
 
+  <!-- Fixed Main Menu Header -->
+  <header id="header">
+    <a href="/" class="logo">
+      <div class="logo-mark"></div>
+      <span>Smark Connect</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#features" class="nav-link">Features</a>
+      <a href="/#insights" class="nav-link">Insights</a>
+      <a href="/#comparison" class="nav-link">Compare</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+      <a href="/docs" class="nav-link">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <a href="/login" class="btn-head btn-secondary">Sign In</a>
+      <a href="/" class="btn-head btn-exit">Exit Setup &times;</a>
+    </div>
+  </header>
+
   <div class="onboarding-wrapper" id="parallax-container">
-    <header>
-      <div class="logo-container">
-        <div class="logo-ring"><div class="logo-ring-inner"></div></div>
-        Smark Connect
+    <!-- Sonar Radar Active Pill -->
+    <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+      <div class="sonar-radar-pill">
+        <span class="sonar-pulse-dot"></span>
+        <span id="radar-status-text">SONAR RADAR ACTIVE &bull; WORKSPACE SETUP</span>
       </div>
-      <a href="index.html" class="skip-link">Skip</a>
-    </header>
+    </div>
+
+    <!-- Target domain recognition banner (revealed when URL query passed) -->
+    <div id="target-domain-card" style="display: none; margin-bottom: 24px;" class="card target-banner-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(139, 44, 224, 0.2); border: 1px solid rgba(192, 132, 252, 0.4); display: flex; align-items: center; justify-content: center; color: #c084fc;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+          </div>
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #c084fc; text-transform: uppercase; letter-spacing: 0.08em;">Target Domain Identified</div>
+            <div style="font-size: 15px; font-weight: 700; color: #ffffff;" id="target-domain-label">https://example.com</div>
+          </div>
+        </div>
+        <span style="font-size: 11px; font-weight: 600; color: #34d399; background: rgba(52, 211, 153, 0.12); border: 1px solid rgba(52, 211, 153, 0.3); padding: 4px 12px; border-radius: 999px;">
+          6 Evidence Engines Queued
+        </span>
+      </div>
+    </div>
 
     <div class="progress-container">
       <div class="progress-bar">
@@ -828,15 +961,39 @@
 
     // Check for URL parameter from landing page search bar
     const urlParams = new URLSearchParams(window.location.search);
-    const prefilledUrl = urlParams.get('url');
+    let prefilledUrl = urlParams.get('url');
     if (prefilledUrl) {
-      // Pre-fill the company URL input and skip to step 3
+      if (!/^https?:\/\//i.test(prefilledUrl)) {
+        prefilledUrl = 'https://' + prefilledUrl;
+      }
       const urlInput = document.getElementById('company-url');
       if (urlInput) urlInput.value = prefilledUrl;
-      // Jump directly to step 3 (company URL step)
-      document.getElementById('step-1').classList.remove('active');
-      document.getElementById('step-3').classList.add('active');
-      currentStep = 3;
+
+      // Extract domain for display
+      let domain = prefilledUrl;
+      try {
+        domain = new URL(prefilledUrl).hostname.replace(/^www\./, '');
+      } catch (e) {
+        domain = prefilledUrl.replace(/^https?:\/\//, '').split('/')[0];
+      }
+
+      // Show target domain banner
+      const targetCard = document.getElementById('target-domain-card');
+      const targetLabel = document.getElementById('target-domain-label');
+      const radarText = document.getElementById('radar-status-text');
+      if (targetCard) targetCard.style.display = 'block';
+      if (targetLabel) targetLabel.textContent = domain;
+      if (radarText) radarText.innerHTML = `SONAR RADAR ACTIVE &bull; TARGET: ${domain} &bull; 6 ENGINES READY`;
+
+      // Update Step 1 button to show continuity
+      const step1Btn = document.querySelector('#step-1 .btn-primary');
+      if (step1Btn) {
+        step1Btn.innerHTML = `Configure AI for ${domain} &rarr;`;
+      }
+
+      state.url = prefilledUrl;
+      state.domain = domain;
+      currentStep = 1;
       updateProgress();
       saveState();
     } else if (state.step && state.step > 1 && state.step <= totalSteps) {
